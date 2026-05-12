@@ -12,7 +12,7 @@ const Nav = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      const sections = ['home', 'about', 'ebook'];
+      const sections = ['home', 'about', 'ebook', 'contact'];
       const scrollPos = window.scrollY + 100;
 
       sections.forEach(section => {
@@ -80,7 +80,10 @@ const Nav = () => {
 
         <div className={styles.right}>
           <div className={styles.desktopContact}>
-            <button className={styles.contactBtn}>
+            <button 
+              className={`${styles.contactBtn} ${activeSection === 'contact' ? styles.activeContact : ''}`}
+              onClick={() => handleLinkClick('contact')}
+            >
               <span className={styles.contactPill}>Contact</span>
               <span className={styles.arrowCircle}>
                 <i className="ri-arrow-right-up-line"></i>
@@ -119,7 +122,10 @@ const Nav = () => {
                   </li>
                 ))}
                 <li className={styles.mobileContactItem}>
-                  <button className={styles.contactBtn}>
+                  <button 
+                    className={`${styles.contactBtn} ${activeSection === 'contact' ? styles.mobileActive : ''}`}
+                    onClick={() => handleLinkClick('contact')}
+                  >
                     <span className={styles.contactPill}>Contact</span>
                     <span className={styles.arrowCircle}>
                       <i className="ri-arrow-right-up-line"></i>

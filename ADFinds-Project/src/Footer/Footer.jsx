@@ -31,11 +31,12 @@ const Footer = () => {
             <Link to="/" onClick={() => handleScrollTo('home')}>Home</Link>
             <Link to="/about" onClick={() => handleScrollTo('about')}>About</Link>
             <Link to="/ebook" onClick={() => handleScrollTo('ebook')}>Ebook</Link>
+            <Link to="/contact" onClick={() => handleScrollTo('contact')}>Contact</Link>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <p>© 2026 AbuDhabi Finds. All rights reserved. | <a href="#">www.creatorsblueprint.io</a></p>
+          <p>© 2026 AbuDhabi Finds. All rights reserved. | <a href="https://www.creatorsblueprint.io" target="_blank">www.creatorsblueprint.io</a></p>
           <p className={styles.developedBy}>Developed by Creators Blueprint</p>
         </div>
       </div>

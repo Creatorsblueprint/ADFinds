@@ -82,7 +82,7 @@
 }
 
 .imageWrapper {
-  width: 80%;
+  width: 100%;
   aspect-ratio: 4 / 5;
   border-radius: 20px;
   overflow: hidden;

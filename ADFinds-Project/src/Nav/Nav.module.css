@@ -113,6 +113,12 @@
   transform: translateY(-2px);
 }
 
+.activeContact .contactPill,
+.activeContact .arrowCircle {
+  background-color: #4A6E7A;
+  box-shadow: 0 0 15px rgba(74, 110, 122, 0.3);
+}
+
 /* Mobile Dropdown - Full Width */
 .mobileMenu {
   position: absolute;

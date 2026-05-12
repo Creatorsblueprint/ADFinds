@@ -1,0 +1,183 @@
+.contact {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #f0f4f5;
+    color: #5D8A99;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+}
+
+.title span {
+    color: #5D8A99;
+}
+
+.description {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 50px;
+}
+
+.ctaGroup {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 32px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    min-width: 260px;
+    border: 1px solid #eee;
+}
+
+.whatsapp {
+    background: white;
+}
+
+.email {
+    background: white;
+}
+
+.whatsapp:hover {
+    border-color: #25d366;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.1);
+}
+
+.email:hover {
+    border-color: #5D8A99;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(93, 138, 153, 0.1);
+}
+
+.iconWrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp .iconWrapper {
+    background: #25d366;
+    color: white;
+}
+
+.email .iconWrapper {
+    background: #5D8A99;
+    color: white;
+}
+
+.cta:hover .iconWrapper {
+    transform: scale(1.1);
+}
+
+.ctaText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ctaLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.ctaValue {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.arrowIcon {
+    margin-left: auto;
+    font-size: 1.2rem;
+    color: #ccc;
+    transition: all 0.3s ease;
+}
+
+.cta:hover .arrowIcon {
+    color: var(--text-dark);
+    transform: translateX(5px);
+}
+
+/* Background elements updated for light theme */
+.bgGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(93, 138, 153, 0.03) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .contact {
+        padding: 80px 0;
+    }
+
+    .container {
+        padding: 0 24px;
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .cta {
+        width: 100%;
+        min-width: unset;
+    }
+}
