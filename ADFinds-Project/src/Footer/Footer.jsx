@@ -17,7 +17,7 @@ const Footer = () => {
           <div className={styles.brand}>
             AbuDhabiFinds
           </div>
-          
+
           <div className={styles.social}>
             <span className={styles.socialLabel}>Media</span>
             <div className={styles.socialIcons}>
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
 
         <div className={styles.bottom}>
-          <p>© 2024 Abu Dhabi Finds. All rights reserved. | <a href="#">www.creatorsblueprint.io</a></p>
+          <p>© 2026 AbuDhabi Finds. All rights reserved. | <a href="#">www.creatorsblueprint.io</a></p>
           <p className={styles.developedBy}>Developed by Creators Blueprint</p>
         </div>
       </div>
