@@ -21,9 +21,9 @@ const Footer = () => {
           <div className={styles.social}>
             <span className={styles.socialLabel}>Media</span>
             <div className={styles.socialIcons}>
-              <a href="#"><i className="ri-instagram-line"></i></a>
-              <a href="#"><i className="ri-tiktok-fill"></i></a>
-              <a href="#"><i className="ri-facebook-circle-fill"></i></a>
+              <a href="https://www.instagram.com/abudhabi.finds/" target="_blank"><i className="ri-instagram-line"></i></a>
+              <a href="https://www.tiktok.com/@abudhabi.finds" target="_blank"><i className="ri-tiktok-fill"></i></a>
+              <a href=""><i className="ri-facebook-circle-fill"></i></a>
             </div>
           </div>
 

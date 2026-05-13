@@ -22,9 +22,9 @@ const Home = () => {
           animate="animate"
         >
           <motion.div className={styles.socialIcons} variants={fadeIn}>
-            <i className="ri-instagram-line"></i>
-            <i className="ri-tiktok-fill"></i>
-            <i className="ri-facebook-circle-fill"></i>
+            <a href="https://www.instagram.com/abudhabi.finds/" target="_blank"><i className="ri-instagram-line"></i></a>
+            <a href="https://www.tiktok.com/@abudhabi.finds" target="_blank"><i className="ri-tiktok-fill"></i></a>
+            <a href=""><i className="ri-facebook-circle-fill"></i></a>
           </motion.div>
 
           <motion.div className={styles.categories} variants={fadeIn}>
@@ -51,15 +51,15 @@ const Home = () => {
           </motion.p>
 
           <motion.div className={styles.cta} variants={fadeIn}>
-            <Link 
-              to="/about" 
+            <Link
+              to="/about"
               className={styles.learnBtn}
               onClick={() => handleScrollTo('about')}
             >
               Learn More
             </Link>
-            <Link 
-              to="/ebook" 
+            <Link
+              to="/ebook"
               className={styles.storyBtn}
               onClick={() => handleScrollTo('ebook')}
             >
