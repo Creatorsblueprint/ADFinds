@@ -82,7 +82,8 @@
 }
 
 .imageWrapper {
-  width: 100%;
+  width: 90%;
+  /* margin-left: auto; */
   aspect-ratio: 4 / 5;
   border-radius: 20px;
   overflow: hidden;
@@ -107,5 +108,10 @@
 
   .teaser {
     max-width: 100%;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    margin: 0 auto;
   }
 }

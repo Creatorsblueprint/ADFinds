@@ -5,7 +5,8 @@ import styles from './Ebook.module.css';
 
 const Ebook = () => {
   const [email, setEmail] = useState('');
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -16,10 +17,56 @@ const Ebook = () => {
 
   const isEmailValid = validateEmail(email);
 
+  const handlePayment = async (e) => {
+    e.preventDefault();
+    if (!isEmailValid) return;
+
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        "https://adfinds-placeholder/api/create-payment-intent",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            amount: 36.70, // 10$ in AED
+            email: email,
+            successUrl: window.location.origin + "?success=true",
+            cancelUrl: window.location.origin + "?cancel=true",
+            type: "ebook",
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Payment initialization failed");
+      }
+
+      const data = await response.json();
+
+      // Extract redirect URL from Ziina backend response
+      const checkoutUrl = data.redirect_url;
+
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        console.error("No checkout URL received from backend", data);
+        alert("Could not initiate payment. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during payment processing:", error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section id="ebook" className={styles.ebook}>
       <div className={styles.container}>
-        <motion.div 
+        <motion.div
           className={styles.content}
           {...scrollReveal}
         >
@@ -30,8 +77,8 @@ const Ebook = () => {
             <span className={styles.offerBadge}>Ebook</span>
             <h3 className={styles.offerTitle}>From Moving to Thriving in Abu Dhabi</h3>
             <p className={styles.offerDesc}>
-              Moving to Abu Dhabi can feel overwhelming, so I made it simple. Fast, easy reference 
-              based guide to help you understand the city, navigate daily life, and settle in 
+              Moving to Abu Dhabi can feel overwhelming, so I made it simple. Fast, easy reference
+              based guide to help you understand the city, navigate daily life, and settle in
               faster without the guesswork.
             </p>
 
@@ -40,27 +87,29 @@ const Ebook = () => {
               <span className={styles.priceValue}>10$</span>
             </div>
 
-            <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
+            <form className={styles.form} onSubmit={handlePayment}>
+              <input
+                type="email"
+                placeholder="Enter your email address"
                 className={styles.input}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
+                required
               />
-              <button 
-                type="submit" 
-                className={`${styles.submitBtn} ${!isEmailValid ? styles.disabled : ''}`}
-                disabled={!isEmailValid}
+              <button
+                type="submit"
+                className={`${styles.submitBtn} ${(!isEmailValid || isLoading) ? styles.disabled : ''}`}
+                disabled={!isEmailValid || isLoading}
               >
-                GET STARTED NOW!
+                {isLoading ? "PROCESSING..." : "GET STARTED NOW!"}
               </button>
             </form>
             {/* <p className={styles.infoLink}><a href="#">Why get this Ebook? ⓘ</a></p> */}
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className={styles.visual}
           {...scrollReveal}
           transition={{ delay: 0.2 }}
