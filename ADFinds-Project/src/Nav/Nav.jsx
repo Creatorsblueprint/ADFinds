@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Nav.module.css';
 
@@ -7,6 +7,26 @@ const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Handle URL-based scrolling on mount and path changes
+    const path = location.pathname.replace('/', '');
+    const sectionId = path || 'home';
+    
+    const sections = ['home', 'about', 'ebook', 'contact'];
+    if (sections.includes(sectionId)) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // Small delay to ensure the DOM is ready
+        const timeoutId = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setActiveSection(sectionId);
+        }, 100);
+        return () => clearTimeout(timeoutId);
+      }
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +60,8 @@ const Nav = () => {
   const handleLinkClick = (id) => {
     setActiveSection(id);
     setIsMobileMenuOpen(false);
+    // Path change will be handled by Link and useEffect, 
+    // but we still scroll here to handle clicking the same link twice
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -80,7 +102,8 @@ const Nav = () => {
 
         <div className={styles.right}>
           <div className={styles.desktopContact}>
-            <button 
+            <Link 
+              to="/contact"
               className={`${styles.contactBtn} ${activeSection === 'contact' ? styles.activeContact : ''}`}
               onClick={() => handleLinkClick('contact')}
             >
@@ -88,7 +111,7 @@ const Nav = () => {
               <span className={styles.arrowCircle}>
                 <i className="ri-arrow-right-up-line"></i>
               </span>
-            </button>
+            </Link>
           </div>
           
           <button 
@@ -122,7 +145,8 @@ const Nav = () => {
                   </li>
                 ))}
                 <li className={styles.mobileContactItem}>
-                  <button 
+                  <Link 
+                    to="/contact"
                     className={`${styles.contactBtn} ${activeSection === 'contact' ? styles.mobileActive : ''}`}
                     onClick={() => handleLinkClick('contact')}
                   >
@@ -130,7 +154,7 @@ const Nav = () => {
                     <span className={styles.arrowCircle}>
                       <i className="ri-arrow-right-up-line"></i>
                     </span>
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </motion.div>
