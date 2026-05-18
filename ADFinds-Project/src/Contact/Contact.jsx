@@ -29,7 +29,7 @@ const Contact = () => {
                     </motion.p>
 
                     <motion.div variants={fadeIn} className={styles.ctaGroup}>
-                        <a
+                        {/* <a
                             href="https://wa.me/yournumber"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -43,7 +43,7 @@ const Contact = () => {
                                 <span className={styles.ctaValue}>WhatsApp</span>
                             </div>
                             <i className="ri-arrow-right-line className={styles.arrowIcon}"></i>
-                        </a>
+                        </a> */}
 
                         <a
                             href="mailto:your@email.com"

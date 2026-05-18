@@ -36,9 +36,9 @@ const Home = () => {
           <motion.h1 className={styles.title} variants={fadeIn}>
             AbuDhabi <br />
             <span className={styles.titleWithIcons}>
-              <img src="/Icons/Vector.png" alt="Fork Spoon" className={styles.titleIcon} />
+              {/* <img src="/Icons/Vector.png" alt="Fork Spoon" className={styles.titleIcon} />
               <img src="/Icons/Vector-1.png" alt="Drink" className={styles.titleIcon} />
-              <img src="/Icons/Vector-2.png" alt="Plane" className={styles.titleIcon} />
+              <img src="/Icons/Vector-2.png" alt="Plane" className={styles.titleIcon} /> */}
               Finds
             </span>
           </motion.h1>
