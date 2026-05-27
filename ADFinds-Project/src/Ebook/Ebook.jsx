@@ -24,7 +24,7 @@ const Ebook = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://findsbackend-648711352735.me-west1.run.app/api/create-payment-intent",
+        "http://localhost:8080/api/create-payment-intent",
         {
           method: "POST",
           headers: {
@@ -35,7 +35,6 @@ const Ebook = () => {
             email: email,
             successUrl: window.location.origin + "?success=true",
             cancelUrl: window.location.origin + "?cancel=true",
-            type: "ebook",
           }),
         },
       );

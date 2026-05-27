@@ -1,13 +1,11 @@
 import { useEffect } from "react";
 import styles from './PaymentPage.module.css';
 
-export default function PaymentSuccess({ setPaymentActive, type }) {
+export default function PaymentSuccess({ setPaymentActive }) {
   useEffect(() => {
     const timer = setTimeout(() => setPaymentActive(false), 8000); // Increased time slightly
     return () => clearTimeout(timer);
   }, [setPaymentActive]);
-
-  const isEbook = type === "ebook";
 
   return (
     <div className={styles.overlay}>
@@ -17,9 +15,7 @@ export default function PaymentSuccess({ setPaymentActive, type }) {
         </div>
         <h1>Payment Successful!</h1>
         <p>
-          {isEbook
-            ? "Thank you for your purchase. Information to access your eBook has been sent to your email."
-            : "Thank you for your purchase. We have received your order and will process it for delivery shortly."}
+          Thank you for your purchase. Information to access your eBook has been sent to your email.
         </p>
         <button className={styles.closeButton} onClick={() => setPaymentActive(false)}>Close</button>
       </div>
