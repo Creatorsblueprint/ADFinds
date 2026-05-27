@@ -3,6 +3,13 @@ import styles from './PaymentPage.module.css';
 
 export default function PaymentCancel({ setPaymentActive }) {
   useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'payment_cancelled', {
+        event_category: 'ecommerce',
+        event_label: 'Ziina Cancel'
+      });
+    }
+
     const timer = setTimeout(() => setPaymentActive(false), 5000);
     return () => clearTimeout(timer);
   }, [setPaymentActive]);

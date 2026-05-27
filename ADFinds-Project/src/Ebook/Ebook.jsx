@@ -22,6 +22,20 @@ const Ebook = () => {
     if (!isEmailValid) return;
 
     setIsLoading(true);
+
+    if (window.gtag) {
+      window.gtag('event', 'begin_checkout', {
+        value: 36.70,
+        currency: 'AED',
+        items: [{
+          item_id: 'ebook_abudhabi_finds',
+          item_name: 'From Moving to Thriving in Abu Dhabi Ebook',
+          price: 36.70,
+          quantity: 1
+        }]
+      });
+    }
+
     try {
       const response = await fetch(
         "https://findsbackend-648711352735.me-west1.run.app/api/create-payment-intent",
@@ -49,6 +63,12 @@ const Ebook = () => {
       const checkoutUrl = data.redirect_url;
 
       if (checkoutUrl) {
+        if (window.gtag) {
+          window.gtag('event', 'redirect_to_payment_gateway', {
+            event_category: 'ecommerce',
+            event_label: 'Ziina Redirect'
+          });
+        }
         window.location.href = checkoutUrl;
       } else {
         console.error("No checkout URL received from backend", data);

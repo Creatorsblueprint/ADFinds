@@ -3,6 +3,20 @@ import styles from './PaymentPage.module.css';
 
 export default function PaymentSuccess({ setPaymentActive }) {
   useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'purchase', {
+        transaction_id: 't_' + new Date().getTime(),
+        value: 36.70,
+        currency: 'AED',
+        items: [{
+          item_id: 'ebook_abudhabi_finds',
+          item_name: 'From Moving to Thriving in Abu Dhabi Ebook',
+          price: 36.70,
+          quantity: 1
+        }]
+      });
+    }
+
     const timer = setTimeout(() => setPaymentActive(false), 8000); // Increased time slightly
     return () => clearTimeout(timer);
   }, [setPaymentActive]);
