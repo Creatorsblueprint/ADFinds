@@ -17,6 +17,20 @@ const Ebook = () => {
 
   const isEmailValid = validateEmail(email);
 
+  const product = [
+    {
+      type: "ebook",
+      title: "The Abu Dhabi Relocation Guide",
+      description: "Moving to Abu Dhabi can feel overwhelming, so I made it simple. Fast, easy reference based guide to help you understand the city, navigate daily life, and settle in faster without the guesswork.",
+      price: 36.70,
+      currency: "aed",
+      image: "https://Creatorsblueprint.github.io/ADFinds/Images/ebook-cover.png",
+      email: email,
+      successUrl: window.location.origin + "?success=true",
+      cancelUrl: window.location.origin + "?cancel=true",
+    }
+  ];
+
   const handlePayment = async (e) => {
     e.preventDefault();
     if (!isEmailValid) return;
@@ -24,18 +38,13 @@ const Ebook = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://findsbackend-648711352735.me-west1.run.app/api/create-payment-intent",
+        "https://findsbackend-648711352735.me-west1.run.app/api/create-checkout-session",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            amount: 36.70, // 10$ in AED
-            email: email,
-            successUrl: window.location.origin + "?success=true",
-            cancelUrl: window.location.origin + "?cancel=true",
-          }),
+          body: JSON.stringify(product[0]),
         },
       );
 
@@ -45,8 +54,8 @@ const Ebook = () => {
 
       const data = await response.json();
 
-      // Extract redirect URL from Ziina backend response
-      const checkoutUrl = data.redirect_url;
+      // Extract redirect URL from Stripe backend response
+      const checkoutUrl = data.url;
 
       if (checkoutUrl) {
         window.location.href = checkoutUrl;
