@@ -61,7 +61,15 @@ const Home = () => {
             <Link
               to="/ebook"
               className={styles.storyBtn}
-              onClick={() => handleScrollTo('ebook')}
+              onClick={() => {
+                if (window.gtag) {
+                  window.gtag('event', 'click_get_ebook_cta', {
+                    event_category: 'engagement',
+                    event_label: 'Hero CTA'
+                  });
+                }
+                handleScrollTo('ebook');
+              }}
             >
               GET EBOOK
             </Link>
