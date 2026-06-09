@@ -91,6 +91,28 @@ const Ebook = () => {
     }
   };
 
+  const handleBuyNow = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    if (window.gtag) {
+      window.gtag('event', 'begin_checkout', {
+        value: 35.00,
+        currency: 'USD',
+        items: [{
+          item_id: 'ebook_abudhabi_finds_samcart',
+          item_name: 'The Abu Dhabi Relocation Guide',
+          price: 35.00,
+          quantity: 1
+        }]
+      });
+    }
+
+    setTimeout(() => {
+      window.location.href = "https://abudhabifinds.samcart.com/products/the-abu-dhabi-relocation-guide";
+    }, 800);
+  };
+
   return (
     <section id="ebook" className={styles.ebook}>
       <div className={styles.container}>
@@ -112,10 +134,10 @@ const Ebook = () => {
 
             <div className={styles.priceTag}>
               <span className={styles.priceLabel}>Price</span>
-              <span className={styles.priceValue}>10$</span>
+              <span className={styles.priceValue}>35$</span>
             </div>
 
-            <form className={styles.form} onSubmit={handlePayment}>
+            {/* <form className={styles.form} onSubmit={handlePayment}>
               <input
                 type="email"
                 placeholder="Enter your email address"
@@ -131,6 +153,27 @@ const Ebook = () => {
                 disabled={!isEmailValid || isLoading}
               >
                 {isLoading ? "PROCESSING..." : "GET STARTED NOW!"}
+              </button>
+            </form> */}
+
+            {/* <div style={{ maxWidth: '450px', width: '100%', margin: '0 auto 20px' }}>
+              <button
+                onClick={handleBuyNow}
+                className={`${styles.submitBtn} ${isLoading ? styles.disabled : ''}`}
+                style={{ width: '100%', border: 'none', cursor: isLoading ? 'not-allowed' : 'pointer' }}
+                disabled={isLoading}
+              >
+                {isLoading ? "PROCESSING..." : "Buy Now!"}
+              </button>
+            </div> */}
+            <form className={styles.form} onSubmit={handlePayment}>
+              <button
+                onClick={handleBuyNow}
+                className={`${styles.submitBtn} ${isLoading ? styles.disabled : ''}`}
+                style={{ width: '100%', border: 'none', cursor: isLoading ? 'not-allowed' : 'pointer' }}
+                disabled={isLoading}
+              >
+                {isLoading ? "PROCESSING..." : "Buy Now!"}
               </button>
             </form>
             {/* <p className={styles.infoLink}><a href="#">Why get this Ebook? ⓘ</a></p> */}

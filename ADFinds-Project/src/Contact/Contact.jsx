@@ -46,7 +46,7 @@ const Contact = () => {
                         </a> */}
 
                         <a
-                            href="mailto:your@email.com"
+                            href="mailto:abudhabifinds@gmail.com"
                             className={`${styles.cta} ${styles.email}`}
                         >
                             <div className={styles.iconWrapper}>
